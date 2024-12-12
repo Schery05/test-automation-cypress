@@ -4,12 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generar-reporte": "allure generate allure-results -o allure-report --clean && allure open allure-results",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
+    "limpiar-reporte": "rimraf ./allure-report && rimraf ./allure-results",
+    "browser:chrome": "npx cypress run --browser=chrome --headed --spec cypress/e2e/login.cy.js --reporter mocha-allure-reporter"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^13.16.1"
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "allure-commandline": "^2.32.0",
+    "allure-cypress": "^3.0.7",
+    "cypress": "^13.16.1",
+    "mocha-allure-reporter": "^1.4.0"
   }
 }

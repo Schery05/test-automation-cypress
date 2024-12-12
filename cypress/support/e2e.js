@@ -1,20 +1,22 @@
-// ***********************************************************
-// This example support/e2e.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
-
-// Import commands.js using ES2015 syntax:
+import "allure-cypress";
 import './commands'
+// ***********************************************************
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+Cypress.Commands.add('login', (username, password) => { 
+    cy.visit('https://www.demoblaze.com/')
+    //  DECLARANDO VARIABLES
+    cy.get('#login2').click()
+    //VALIDAR QUE SE MUESTRA EL MODAL DEL LOGIN
+    cy.get('.modal-content').should('be.visible')
+
+    cy.get('#loginusername').as('username');
+    cy.get('#loginpassword').as('password');
+    
+  //  cy.get('#password').as('password')
+    //UTILIANDO LAS VARIABLES DECLARADAS PARA INGRESAR CREDENCIALES
+    cy.get('@username').type(username)
+    cy.get('@password').type(password)
+
+    cy.get('#logInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
+
+})
