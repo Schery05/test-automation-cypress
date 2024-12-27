@@ -1,10 +1,10 @@
 import { LoginElements } from "./login.elements"
 export class LoginMethods{
     static insertUser(user){
-        LoginElements.textboxes.username.invoke(user)
+        LoginElements.textboxes.username.invoke('val',user)
     }
     static insertPassword(password){
-        LoginElements.textboxes.password.invoke(password)
+        LoginElements.textboxes.password.invoke('val',password)
     }
 
     static clicarLogin(){
@@ -24,6 +24,7 @@ export class LoginMethods{
         //VAMOS A PROBAR EL METODO INVOKE PARA VER SI SE SOLUCIONA EL ERROR DE QUE NO ESCRIBE A VECES EN EL CAMPO CONTRASEÑA O QUE ESCRIBE EL USERNAME INCOMPLETO
         //cy.wait(1000)
         this.insertPassword(password)
+        cy.wait(1000)
         this.clicarLogin()
     }
 }
