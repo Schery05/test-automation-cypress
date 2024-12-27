@@ -29,9 +29,16 @@ import { configureAllureAdapterPlugins } from "@mmisty/cypress-allure-adapter/pl
 export default defineConfig({
   e2e: {
     setupNodeEvents: (on, config) => {
+      console.log("Configurando Allure Adapter Plugins");
+
       configureAllureAdapterPlugins(on, config);
 
       return config;
+    },
+
+    env: {
+      allure: true, // Activa la generación de reportes Allure
+      allureReuseAfterSpec: true, // Reutiliza resultados tras cada archivo de prueba
     },
   }
 });
