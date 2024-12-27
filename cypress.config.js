@@ -1,7 +1,8 @@
 
 // const { defineConfig } = require("cypress");
 import { defineConfig } from "cypress";
-import { allureCypress } from "allure-cypress/reporter";
+import { configureAllureAdapterPlugins } from "@mmisty/cypress-allure-adapter/plugins/index.js";
+
 // import allureWriter from "@shelex/cypress-allure-plugin/writer";
 // const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
@@ -28,17 +29,9 @@ import { allureCypress } from "allure-cypress/reporter";
 export default defineConfig({
   e2e: {
     setupNodeEvents: (on, config) => {
-      allureCypress(on, config);
+      configureAllureAdapterPlugins(on, config);
 
       return config;
     },
-    env: {
-      allureReuseAfterSpec: true,
-      allureAttachRequests: true,
-      allureClearSkippedTests: false,
-      allureAddVideoOnPass: false,
-      allure: true, // Habilita Allure
-      allureResultsPath: 'allure-results', // Directorio de resultados
-    },
-  },
+  }
 });

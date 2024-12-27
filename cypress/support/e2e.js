@@ -1,4 +1,4 @@
-import "allure-cypress";
+import '@mmisty/cypress-allure-adapter/support';
 import './commands'
 // ***********************************************************
 
